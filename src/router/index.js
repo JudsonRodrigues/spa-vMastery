@@ -1,35 +1,27 @@
 import Vue from 'vue'
-import VueRouter from 'vue-router'
-import Home from '../views/Home.vue'
+import Router from 'vue-router'
+import EventCreate from './../views/EventCreate.vue'
+import EventList from './../views/EventList.vue'
+import EventShow from './../views/EventShow.vue'
 
-Vue.use(VueRouter)
+Vue.use(Router)
 
-const routes = [
-  {
-    path: '/',
-    name: 'Home',
-    component: Home
-  },
-  {
-    path: '/about-us',
-    name: 'About',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () =>
-      import(/* webpackChunkName: "about" */ '../views/About.vue'),
-    alias: 'About-me'
-  },
-  {
-    path: '/about',
-    redirect: { name: 'About' }
-  }
-]
-
-const router = new VueRouter({
-  mode: 'history',
-  base: process.env.BASE_URL,
-  routes
+export default new Router({
+  routes: [
+    {
+      path: '/',
+      name: 'event-list',
+      component: EventList
+    },
+    {
+      path: '/event',
+      name: 'event-show',
+      component: EventShow
+    },
+    {
+      path: '/event/create',
+      name: 'event-create',
+      component: EventCreate
+    }
+  ]
 })
-
-export default router
