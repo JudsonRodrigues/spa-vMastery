@@ -16,7 +16,6 @@
 		components: {
 			EventCard
 		},
-
 		data() {
 			return {
 				events: []

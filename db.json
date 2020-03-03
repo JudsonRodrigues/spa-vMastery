@@ -71,6 +71,34 @@
           "name": "Mary Gordon"
         }
       ]
+    },
+    {
+      "id": 3197034,
+      "category": "nature",
+      "organizer": {
+        "id": "abc123",
+        "name": "Adam Jahr"
+      },
+      "title": "Trilha",
+      "description": "Vamos fazer uma trilha",
+      "location": "Trilhas",
+      "date": "",
+      "time": "",
+      "attendees": []
+    },
+    {
+      "id": 5614882,
+      "category": "nature",
+      "organizer": {
+        "id": "abc123",
+        "name": "Adam Jahr"
+      },
+      "title": "Plantio de árvores",
+      "description": "Vamos plantar árvores",
+      "location": "Parque",
+      "date": "2020-04-18T20:10:00.000Z",
+      "time": "9:00",
+      "attendees": []
     }
   ]
 }

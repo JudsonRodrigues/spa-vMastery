@@ -1,6 +1,8 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 
+import EventService from '@/services/EventServices.js'
+
 Vue.use(Vuex)
 
 export default new Vuex.Store({
@@ -22,8 +24,22 @@ export default new Vuex.Store({
       { id: 4, title: '...', organizer: '...' }
     ]
   },
-  mutations: {},
-  actions: {},
+  mutations: {
+    ADD_EVENT(state, event) {
+      state.events.push(event)
+    }
+  },
+  actions: {
+    // comit é o context object 
+    // event é o payload
+    createEvent({ commit }, event) {
+      return EventService.postEvent(event).then(() => {
+        commit('ADD_EVENT', event)
+      })
+
+    }
+
+  },
   getters: {
     getEventById: state => id => {
       return state.events.find(event => event.id === id)
