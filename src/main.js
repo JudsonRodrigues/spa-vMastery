@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import App from './App.vue'
 import router from './router'
-import store from './store'
+import store from './store/index.js'
 
 // import BaseIcon from '@/components/BaseIcon'
 // import BaseButton from '@/components/BaseButton'
@@ -22,7 +22,7 @@ const requireComponent = require.context(
   // Whether or not to look in subfolders
   false,
   // The regular expression used to match base component filenames
-  /Base[A-Z]\w+\.(vue)$/
+  /Base[A-Z]\w+\.(vue|js)$/
   // /Base[A-Z]\w+\.(vue|js)$/
 )
 
