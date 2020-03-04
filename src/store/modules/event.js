@@ -25,15 +25,22 @@ export const mutations = {
 export const actions = {
     // commit é o context object 
     // event é o payload
-    createEvent({ commit, rootState }, event) {
-
-        console.log('usuario criando o evento é ' + rootState.user.user.name)
+    createEvent({ commit, dispatch }, event) {
 
         return EventService.postEvent(event).then(() => {
             commit('ADD_EVENT', event)
+
+            const notification = { type: 'success', message: 'Seu evento foi criado!' }
+            dispatch('notification/add', notification, { root: true }) // notification/add = 'Module/action' e notification é o payload
+
+        }).catch(error => {
+
+            const notification = { type: 'error', message: 'Houve um problema ao criar o evento: ' + error.message }
+            dispatch('notification/add', notification, { root: true }) // notification/add = 'Module/action' e notification é o payload
+            throw error
         })
     },
-    fetchEvents({ commit }, { perPage, page }) {
+    fetchEvents({ commit, dispatch }, { perPage, page }) {
         EventService.getEvents(perPage, page)
             .then(response => {
                 commit('SET_EVENTS_TOTAL', parseInt(response.headers['x-total-count']))
@@ -42,9 +49,14 @@ export const actions = {
                 // response.data é o payload
                 commit('SET_EVENTS', response.data)
             })
-            .catch(error => console.log('Houve um erro:' + error.response))
+            .catch(error => {
+
+                const notification = { type: 'error', message: 'Houve um problema ao buscar os eventos: ' + error.message }
+                dispatch('notification/add', notification, { root: true }) // notification/add = 'Module/action' e notification é o payload
+
+            })
     },
-    fetchEvent({ commit, getters }, id) {
+    fetchEvent({ commit, getters, dispatch }, id) {
 
         var event = getters.getEventById(id)
 
@@ -57,7 +69,8 @@ export const actions = {
                     commit('SET_EVENT', response.data)
                 })
                 .catch(error => {
-                    console.log('houve um erro:' + error.response)
+                    const notification = { type: 'error', message: 'Houve um problema ao buscar o evento: ' + error.message }
+                    dispatch('notification/add', notification, { root: true }) // notification/add = 'Module/action' e notification é o payload
                 })
         }
     }

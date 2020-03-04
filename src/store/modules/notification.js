@@ -1,4 +1,4 @@
-export const namespace = true
+export const namespaced = true
 
 export const state = {
     notifications: []
