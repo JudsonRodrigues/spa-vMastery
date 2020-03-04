@@ -61,7 +61,7 @@
 				// 'createEvent' é a action que estamos chamando
 				// this.event é o payload
 				this.$store
-					.dispatch('createEvent', this.event)
+					.dispatch('event/createEvent', this.event)
 					.then(() => {
 						this.$router.push({
 							name: 'event-show',

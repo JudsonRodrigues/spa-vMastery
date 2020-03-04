@@ -1,5 +1,7 @@
 import EventService from '@/services/EventServices.js'
 
+export const namespaced = true;
+
 export const state = {
     events: [],
     eventsTotal: 0,
@@ -23,7 +25,10 @@ export const mutations = {
 export const actions = {
     // commit é o context object 
     // event é o payload
-    createEvent({ commit }, event) {
+    createEvent({ commit, rootState }, event) {
+
+        console.log('usuario criando o evento é ' + rootState.user.user.name)
+
         return EventService.postEvent(event).then(() => {
             commit('ADD_EVENT', event)
         })
