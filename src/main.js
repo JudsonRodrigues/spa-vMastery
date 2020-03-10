@@ -2,6 +2,7 @@ import Vue from 'vue'
 import App from './App.vue'
 import router from './router'
 import store from './store/index.js'
+import 'nprogress/nprogress.css'
 
 // import BaseIcon from '@/components/BaseIcon'
 // import BaseButton from '@/components/BaseButton'
